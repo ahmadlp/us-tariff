@@ -1,0 +1,13 @@
+# Large data files
+results/results.csv
+
+# macOS
+.DS_Store
+
+# MATLAB temp files
+*.asv
+*.m~
+
+# IDE
+.vscode/
+.claude/
