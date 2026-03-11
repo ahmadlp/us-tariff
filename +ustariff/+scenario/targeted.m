@@ -10,6 +10,14 @@ function spec = targeted(partner, rate)
 %
 %   See also: ustariff.scenario.build_tariff_cube
 
+    validateattributes(rate, {'numeric'}, {'scalar', 'real', '>=', 0, '<=', 1}, ...
+        mfilename, 'rate');
+    if ~(ischar(partner) || (isstring(partner) && isscalar(partner)))
+        error('ustariff:scenario:invalidPartner', ...
+            'partner must be a text scalar such as ''CHN'' or ''EU''.');
+    end
+    partner = upper(char(string(partner)));
+
     spec.name    = 'targeted';
     spec.type    = 'targeted';
     spec.label   = sprintf('Targeted %s at %d%%', partner, round(rate * 100));

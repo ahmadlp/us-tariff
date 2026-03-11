@@ -11,7 +11,7 @@ function [X_sol, exitflag, output, t_us_opt] = optimal_us_tariff(N, S, Yi3D, Ri3
 %   Returns the full solution vector X_sol and the scalar optimal
 %   U.S. tariff rate t_us_opt.
 %
-%   See also: ustariff.solver.optimal_us_equations, tariffwar.solver.nash_equilibrium
+%   See also: ustariff.solver.optimal_us_equations
 
     % Build initial guess (2N+1: wages + incomes + U.S. tariff)
     T0 = [cfg.optimal.T0_scale.wi   * ones(N, 1); ...
@@ -23,7 +23,7 @@ function [X_sol, exitflag, output, t_us_opt] = optimal_us_tariff(N, S, Yi3D, Ri3
         e_ik3D, sigma_k3D, lambda_jik3D, tjik_3D, us_idx);
 
     % Stall monitor
-    [monitor_fcn, monitor_reset] = tariffwar.solver.stall_monitor( ...
+    [monitor_fcn, monitor_reset] = ustariff.solver.stall_monitor( ...
         cfg.optimal.stall_window, cfg.optimal.min_progress);
 
     % Initial-guess ranges for retries
@@ -59,9 +59,9 @@ function [X_sol, exitflag, output, t_us_opt] = optimal_us_tariff(N, S, Yi3D, Ri3
         cfg_opt = cfg;
         cfg_opt.solver = cfg.optimal;
         if attempt < max_attempts
-            opts = tariffwar.solver.solver_options(cfg_opt, monitor_fcn);
+            opts = ustariff.solver.solver_options(cfg_opt, monitor_fcn);
         else
-            opts = tariffwar.solver.solver_options(cfg_opt);
+            opts = ustariff.solver.solver_options(cfg_opt);
         end
         [X_try, fval, ef, out] = fsolve(target, T0_cur, opts);
         out.max_residual = max(abs(fval));

@@ -29,7 +29,7 @@ function [ceq] = counterfactual_equations(X, N, S, Yi3D, Ri3D, e_ik3D, sigma_k3D
 %
 %   Returns ceq (1 x 2N): equation residuals [ERR1, ERR2].
 %
-%   See also: ustariff.solver.counterfactual, tariffwar.solver.nash_equations
+%   See also: ustariff.solver.counterfactual
 
 % Extract unknowns from solution vector X
 % abs(.) prevents complex numbers during fsolve line search

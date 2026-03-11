@@ -17,7 +17,7 @@ function [X_sol, exitflag, output] = counterfactual(N, S, Yi3D, Ri3D, e_ik3D, ..
 %     Stall monitor kills early if ||F|| stops decreasing.
 %     Best solution (by exitflag, then residual) is returned.
 %
-%   See also: ustariff.solver.counterfactual_equations, tariffwar.solver.nash_equilibrium
+%   See also: ustariff.solver.counterfactual_equations
 
     % Build initial guess (2N: wages + incomes only)
     T0 = [cfg.solver.T0_scale.wi * ones(N, 1); ...
@@ -28,7 +28,7 @@ function [X_sol, exitflag, output] = counterfactual(N, S, Yi3D, Ri3D, e_ik3D, ..
         e_ik3D, sigma_k3D, lambda_jik3D, tjik_3D_factual, tjik_h3D);
 
     % Stall monitor
-    [monitor_fcn, monitor_reset] = tariffwar.solver.stall_monitor( ...
+    [monitor_fcn, monitor_reset] = ustariff.solver.stall_monitor( ...
         cfg.solver.stall_window, cfg.solver.min_progress);
 
     % Initial-guess ranges for retries
@@ -60,9 +60,9 @@ function [X_sol, exitflag, output] = counterfactual(N, S, Yi3D, Ri3D, e_ik3D, ..
 
         % Last attempt: no stall monitor
         if attempt < max_attempts
-            opts = tariffwar.solver.solver_options(cfg, monitor_fcn);
+            opts = ustariff.solver.solver_options(cfg, monitor_fcn);
         else
-            opts = tariffwar.solver.solver_options(cfg);
+            opts = ustariff.solver.solver_options(cfg);
         end
         [X_try, fval, ef, out] = fsolve(target, T0_cur, opts);
         out.max_residual = max(abs(fval));

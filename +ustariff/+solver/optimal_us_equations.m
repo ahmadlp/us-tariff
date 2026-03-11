@@ -26,7 +26,7 @@ function [ceq] = optimal_us_equations(X, N, S, Yi3D, Ri3D, e_ik3D, sigma_k3D, la
 %
 %   Returns ceq (1 x (2N+1)): equation residuals [ERR1, ERR2, ERR3].
 %
-%   See also: ustariff.solver.optimal_us_tariff, tariffwar.solver.nash_equations
+%   See also: ustariff.solver.optimal_us_tariff
 
 % Extract unknowns
 wi_h = abs(X(1:N));

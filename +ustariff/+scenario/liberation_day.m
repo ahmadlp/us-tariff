@@ -4,17 +4,16 @@ function spec = liberation_day()
 %   spec = ustariff.scenario.liberation_day()
 %
 %   Reads the reciprocal tariff schedule from the data files:
-%     +ustariff/data/reciprocal_tariffs/country_labels.csv
-%     +ustariff/data/reciprocal_tariffs/tariffs.csv
-%     +ustariff/data/reciprocal_tariffs/trade_cepii.csv
+%     data/reciprocal_tariffs/country_labels.csv
+%     data/reciprocal_tariffs/tariffs.csv
+%     data/reciprocal_tariffs/trade_cepii.csv
 %
 %   Builds an ISO3 -> tariff rate mapping and stores trade data for
 %   computing ROW trade-weighted averages.
 %
 %   See also: ustariff.scenario.build_tariff_cube
 
-    pkg_root = fileparts(fileparts(mfilename('fullpath')));
-    data_dir = fullfile(pkg_root, 'data', 'reciprocal_tariffs');
+    data_dir = fullfile(ustariff.repo_root(), 'data', 'reciprocal_tariffs');
 
     % Read country labels
     labels = readtable(fullfile(data_dir, 'country_labels.csv'), 'TextType', 'string');

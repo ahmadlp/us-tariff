@@ -8,6 +8,9 @@ function spec = uniform(rate)
 %
 %   See also: ustariff.scenario.build_tariff_cube
 
+    validateattributes(rate, {'numeric'}, {'scalar', 'real', '>=', 0, '<=', 1}, ...
+        mfilename, 'rate');
+
     spec.name   = 'uniform';
     spec.type   = 'uniform';
     spec.label  = sprintf('Uniform %d%%', round(rate * 100));

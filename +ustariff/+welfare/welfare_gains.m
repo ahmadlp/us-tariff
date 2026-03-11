@@ -7,7 +7,7 @@ function [Gains] = welfare_gains(X, N, S, e_ik3D, sigma_k3D, lambda_jik3D, tjik_
 %   computes the percent change in real income (welfare) for each country.
 %   Welfare_hat = E_hat / P_hat.
 %
-%   Unlike tariffwar.welfare.welfare_gains, which reconstructs the tariff
+%   Unlike the Nash-equilibrium welfare routine in tariffwar, which reconstructs the tariff
 %   cube from X(2N+1:3N), this version takes tjik_h3D directly as input.
 %
 %   Inputs:
@@ -20,7 +20,7 @@ function [Gains] = welfare_gains(X, N, S, e_ik3D, sigma_k3D, lambda_jik3D, tjik_
 %
 %   Returns Gains (N x 1): percent welfare change per country.
 %
-%   See also: ustariff.solver.counterfactual, tariffwar.welfare.welfare_gains
+%   See also: ustariff.solver.counterfactual
 
 % Extract unknowns from the counterfactual solution vector
 wi_h   = abs(X(1:N));           % N x 1 wage changes (hat)

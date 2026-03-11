@@ -16,7 +16,7 @@ function [tjik_3D_cf, tjik_h3D] = build_tariff_cube(spec, retaliation, data)
 %   Inputs:
 %     spec         - scenario struct from ustariff.scenario.*
 %     retaliation  - 'none' or 'reciprocal'
-%     data         - struct from tariffwar.io.load_data (needs .countries,
+%     data         - struct from ustariff.io.load_data (needs .countries,
 %                    .tjik_3D, .N, .S)
 %
 %   Returns:

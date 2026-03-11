@@ -1,5 +1,8 @@
 # Large data files
 results/results.csv
+results/maps/
+mat/*.mat
+!mat/ICIO2022.mat
 
 # macOS
 .DS_Store
