@@ -1,8 +1,15 @@
 # ustariff
 
-`ustariff` is a MATLAB package for solving the welfare effects of predetermined U.S. tariff scenarios in the multi-country, multi-sector CES trade model of Lashkaripour (2021). It is the policy-counterfactual companion to `tariffwar`: tariffs are taken as exogenous policy inputs, and the package solves for the resulting equilibrium wages, incomes, and welfare changes.
+`ustariff` is a MATLAB package for computing the welfare effects of predetermined U.S. tariff scenarios in the multi-country, multi-sector CES trade model of Lashkaripour (2021). Tariffs are treated as policy inputs, and the package solves for the resulting equilibrium wages, incomes, and welfare changes.
 
-The public quickstart is now self-contained. A fresh clone ships with a bundled `mat/ICIO2022.mat` file, a bundled GDP lookup, and checked-in examples. Users can run the simulator without cloning `tariffwar`, rebuilding raw data, or downloading anything else for the first example.
+The repository includes:
+
+- MATLAB package code under `+ustariff/`
+- bundled quickstart data in `mat/ICIO2022.mat`
+- a bundled GDP lookup in `support/gdp/`
+- example scripts in `examples/`
+
+You can run the package from a new clone without rebuilding raw data.
 
 ## Install Or Download
 
@@ -21,7 +28,7 @@ addpath(pwd)
 
 ## One-Minute Quickstart
 
-This path uses the bundled `mat/ICIO2022.mat` file. It does not require a sibling `tariffwar` checkout.
+This example uses the bundled `mat/ICIO2022.mat` file.
 
 ```matlab
 addpath(pwd)
@@ -144,7 +151,7 @@ run(fullfile('examples', 'full_suite_external_data.m'))
 
 ## Expected Output
 
-The runner writes `results/results.csv` by default. The CSV schema is unchanged:
+The runner writes `results/results.csv` by default. The CSV schema is:
 
 ```text
 Country,Year,Dataset,Elasticity,Scenario,Tariff_Rate,Target,Retaliation,Percent_Change,Dollar_Change,Real_GDP
@@ -158,7 +165,7 @@ Returned fields:
 - `results.map_file` for single-run calls
 - `results.skipped_data` for dataset-year requests that could not be satisfied
 
-The `Elasticity` column keeps the full registry name, not just the abbreviation, so existing dashboard imports do not need an ETL change.
+The `Elasticity` column stores the full registry name rather than only the abbreviation.
 
 ## Optional Map Export
 
@@ -232,7 +239,7 @@ This is the fastest option when you already maintain a full `tariffwar` data arc
 
 ## Data Sources
 
-The bundled and downloaded `.mat` files come from the `tariffwar` data pipeline. Users can run `ustariff` without rebuilding those files, but the underlying data sources should still be cited when results are reported.
+The bundled and downloaded `.mat` files are built from the underlying `tariffwar` data pipeline. You do not need that pipeline to run `ustariff`, but the underlying data sources should still be cited when results are reported.
 
 | Source | Coverage used here | Citation |
 | --- | --- | --- |
@@ -277,11 +284,11 @@ That distinction is the main conceptual difference from `tariffwar`:
 
 - `ustariff.pipeline.run` not found: make sure you called `addpath(pwd)` from the repository root, not from inside `+ustariff/`.
 - Keep the repo in a normal folder name such as `ustariff/`, not `+ustariff/`. Only the inner MATLAB package directory should use the `+` prefix.
-- Quickstart fails on a fresh clone: confirm that `mat/ICIO2022.mat` exists and that the repository root is on the MATLAB path.
+- The bundled-data example fails: confirm that `mat/ICIO2022.mat` exists and that the repository root is on the MATLAB path.
 - A missing dataset-year is skipped: inspect `results.skipped_data`. Single-run calls error; larger batches continue.
 - Auto-download fails: try again with a stable internet connection, or pass `'mat_dir'` to a local archive of prebuilt `.mat` files.
 - Dollar values are `NaN`: the GDP lookup could not be found or matched for that country-year.
-- The map shows gray countries: those countries have no welfare value for the current run, which is expected for non-observed geography such as `ROW`.
+- The map shows gray countries: those countries have no welfare value for the selected run, which is expected for non-observed geography such as `ROW`.
 
 ## References
 
