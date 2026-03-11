@@ -5,8 +5,8 @@ function raw = insample()
 %
 %   Returns dataset-specific 16x1 epsilon vectors at WIOD-16 classification:
 %     .epsilon_wiod  - from Lashkaripour (2021) SECTORAL_TRADE_ELASTICITY.csv
-%     .epsilon_icio  - CP2014 trilateral gravity on pooled ICIO 2011-2022
-%     .epsilon_itpd  - CP2014 trilateral gravity on pooled ITPD 2000-2019
+%     .epsilon_icio  - Caliendo-Parro triple difference estimator on pooled ICIO 2011-2022
+%     .epsilon_itpd  - Caliendo-Parro triple difference estimator on pooled ITPD 2000-2019
 %     .sectors       - 16x1 cell of WIOD-16 sector labels
 %
 %   The build pipeline selects the appropriate vector based on the target
@@ -36,7 +36,7 @@ function raw = insample()
          1.64;  ... % 15 Other manufacturing; repair
          5.00]; ... % 16 Services (aggregate)
 
-    % ICIO: CP2014 trilateral gravity on pooled ICIO 2011-2022, aggregated to WIOD-16
+    % ICIO: Caliendo-Parro triple difference estimator on pooled ICIO 2011-2022, aggregated to WIOD-16
     % Pooled groups: {[1,2], [9,10], [11,12,13,14,15]}
     raw.epsilon_icio = [ ...
          7.6215;  ... % 1  Agriculture, forestry, fishing (pooled 1+2)
@@ -56,7 +56,7 @@ function raw = insample()
          4.0000;  ... % 15 Other manufacturing; repair (pooled 11-15, fallback)
          4.0000]; ... % 16 Services (aggregate, fallback)
 
-    % ITPD: CP2014 trilateral gravity on pooled ITPD 2000-2019, aggregated to WIOD-16
+    % ITPD: Caliendo-Parro triple difference estimator on pooled ITPD 2000-2019, aggregated to WIOD-16
     % Pooled group: {[1,2]}
     raw.epsilon_itpd = [ ...
          5.5110;  ... % 1  Agriculture, forestry, fishing (pooled 1+2)

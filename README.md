@@ -260,7 +260,7 @@ Scenario-specific bundled data:
 
 | Abbrev | Source | Citation |
 | --- | --- | --- |
-| `IS` | In-sample, dataset-specific | WIOD: Lashkaripour (2021); ICIO/ITPD: Caliendo-Parro-style trilateral estimation in-package |
+| `IS` | In-sample, dataset-specific | WIOD: Lashkaripour (2021); ICIO/ITPD: Caliendo-Parro triple difference estimator implemented in-package |
 | `U4` | Uniform elasticity of 4 | Simonovska and Waugh (2014) |
 | `CP` | Caliendo-Parro | Caliendo and Parro (2015) |
 | `BSY` | Bagwell-Staiger-Yurukoglu | Bagwell, Staiger, and Yurukoglu (2021) |
